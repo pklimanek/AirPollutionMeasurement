@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PomiaryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Pomiary">
+          <Key>
+            <PropertyRef Name="PomiarID" />
+          </Key>
+          <Property Name="PomiarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataCzas" Type="datetime" Nullable="false" />
+          <Property Name="PM1" Type="float" />
+          <Property Name="PM25" Type="float" />
+          <Property Name="PM10" Type="float" />
+          <Property Name="Temperatura" Type="float" />
+          <Property Name="Wilgotnosc" Type="float" />
+        </EntityType>
+        <EntityContainer Name="PomiaryModelStoreContainer">
+          <EntitySet Name="Pomiary" EntityType="Self.Pomiary" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PomiaryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Pomiary">
+          <Key>
+            <PropertyRef Name="PomiarID" />
+          </Key>
+          <Property Name="PomiarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataCzas" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PM1" Type="Double" />
+          <Property Name="PM25" Type="Double" />
+          <Property Name="PM10" Type="Double" />
+          <Property Name="Temperatura" Type="Double" />
+          <Property Name="Wilgotnosc" Type="Double" />
+        </EntityType>
+        <EntityContainer Name="PomiaryContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Pomiaries" EntityType="Self.Pomiary" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PomiaryModelStoreContainer" CdmEntityContainer="PomiaryContext">
+          <EntitySetMapping Name="Pomiaries">
+            <EntityTypeMapping TypeName="PomiaryModel.Pomiary">
+              <MappingFragment StoreEntitySet="Pomiary">
+                <ScalarProperty Name="PomiarID" ColumnName="PomiarID" />
+                <ScalarProperty Name="DataCzas" ColumnName="DataCzas" />
+                <ScalarProperty Name="PM1" ColumnName="PM1" />
+                <ScalarProperty Name="PM25" ColumnName="PM25" />
+                <ScalarProperty Name="PM10" ColumnName="PM10" />
+                <ScalarProperty Name="Temperatura" ColumnName="Temperatura" />
+                <ScalarProperty Name="Wilgotnosc" ColumnName="Wilgotnosc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

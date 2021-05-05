@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MeteoDBModelStoreContainer" CdmEntityContainer="MeteoDBEntities">
+    <EntitySetMapping Name="Pomiaries">
+      <EntityTypeMapping TypeName="MeteoDBModel.Pomiary">
+        <MappingFragment StoreEntitySet="Pomiary">
+          <ScalarProperty Name="PomiarID" ColumnName="PomiarID" />
+          <ScalarProperty Name="DataCzas" ColumnName="DataCzas" />
+          <ScalarProperty Name="PM1" ColumnName="PM1" />
+          <ScalarProperty Name="PM25" ColumnName="PM25" />
+          <ScalarProperty Name="PM10" ColumnName="PM10" />
+          <ScalarProperty Name="Temperatura" ColumnName="Temperatura" />
+          <ScalarProperty Name="Wilgotnosc" ColumnName="Wilgotnosc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

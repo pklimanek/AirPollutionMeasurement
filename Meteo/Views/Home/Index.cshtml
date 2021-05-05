@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "Strona główna";
+}
+
+<script src="index.css"></script>
+
+<h1>Witaj na AirControll!</h1>
+<img id="air" src="https://cdn.pixabay.com/photo/2016/09/04/20/14/sunset-1645105_960_720.jpg">
+
+<h3>Sprawdź jakość powietrza w Twojej okolicy</h3>
+<p>
+    <ul>
+        <li>Temperatura: 12 [°C]</li>
+        <li>Wilgotność: 63 [%]</li>
+        <li>Stężenie pyłu PM1: 14 [µg/m^3]</li>
+        <li>Stężenie pyłu PM2,5: 18 [µg/m^3]</li>
+        <li>Stężenie pyłu PM10: 27 [µg/m^3]</li>
+    </ul>
+</p>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+
+<script>
+    $(document).ready(function () {
+         $.getJSON("/Home/GetData", function (data) {
+        Highcharts.chart('container', {
+        chart: {
+            type: 'spline'
+        },
+        title: {
+            text: 'Średnie stężenie pyłu zawieszonego w powietrzu'
+        },
+        subtitle: {
+            text: 'Dane na podstawie wartości zmierzonych w okolicy Wodzisławia Śląskiego'
+        },
+        xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        },
+        yAxis: {
+            title: {
+                text: 'Stężenie pyłu'
+            },
+            labels: {
+                formatter: function () {
+                    return this.value + '[µg/m^3]';
+                }
+            }
+        },
+        tooltip: {
+            crosshairs: true,
+            shared: true
+        },
+        plotOptions: {
+            spline: {
+                marker: {
+                    radius: 4,
+                    lineColor: '#666666',
+                    lineWidth: 1
+                }
+            }
+        },
+        series: [{
+            name: 'PM2,5',
+            marker: {
+                symbol: 'square'
+            },
+            data: [25.2, 21.5, 18.2, 14.7, 9.5, 6.9, 4.0, {
+                y: 5.5,
+            }, 6.3, 10.3, 13.9, 19.6]
+
+        }, {
+            name: 'PM10',
+            marker: {
+                symbol: 'diamond'
+            },
+            data: [{
+                y: 3.9,
+
+            }, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+        }, {
+            name: 'PM1',
+            marker: {
+                symbol: 'circle'
+            },
+            data: [{
+                y: 8.4,
+
+            }, 1.2, 3.4, 7.3, 9.4, 11.2, 13.9, 15.8, 18.9, 10.3, 7.6, 3.8]
+        }]
+        });
+        });
+        console.log("ready!");
+    });   
+</script>
